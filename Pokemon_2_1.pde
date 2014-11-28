@@ -35,13 +35,13 @@ void setup() {
   //Size of window
   size(320, 288); 
 
-  //  xCam = -96;
-  //  yCam = -192;
-  //  room = 0;
-
-  xCam = -320;
-  yCam = 1280;
+  xCam = -96;
+  yCam = -192;
   room = 2;
+
+  //  xCam = -320;
+  //  yCam = 1280;
+  //  room = 2;
 
   //intro = new Movie(this, "cinematic.mp4");
 
@@ -151,39 +151,6 @@ void createWalls() {
         stairs = new Warp(12, 7, 1, 1);
       }
     }
-    if (yCam <= 128) {
-      wall[0] = new Wall(2, 14, 2, 1);  //Bot Left of Lake
-      wall[1] = new Wall(4, 10, 4, 4);  //Lake
-      wall[2] = new Wall(8, 13, 12, 1);  //Bot Right of Lake
-      wall[3] = new Wall(1, 13, 1, 1);  //Bot Corner Left
-      wall[4] = new Wall(0, -3, 1, 17);  //Main Left
-      wall[5] = new Wall(1, -3, 9, 1);  //Top Left of Grass
-      wall[6] = new Wall(12, -3, 8, 1); //Top Right of Grass
-      wall[7] = new Wall(19, -2, 1, 16); //Main Right
-      wall[8] = new Wall(9, -6, 1, 3);  //Top Left Grass Vertical
-      wall[9] = new Wall(12, -6, 1, 3);  //Top Right Grass Vertical (Room 3)
-      wall[10] = new Wall(4, -1, 4, 2); //Top House Red (Room 3)
-      wall[11] = new Wall(3, 1, 2, 1);  //Pannel Red (Room 3)
-      wall[12] = new Wall(6, 1, 2, 1);  //Right Bot Corner House Red (Room 3)
-      wall[13] = new Wall(4, 5, 4, 1);  //Fence 01 (Room 3)
-
-      wall[14] = new Wall(12, -1, 4, 2); //Top House Blue (Room 3)
-      wall[15] = new Wall(11, 1, 2, 1);  //Pannel Blue (Room 3)
-      wall[16] = new Wall(14, 1, 2, 1);  //Right Bot Corner House Blue (Room 3)
-      wall[17] = new Wall(10, 4, 6, 3);  //Lab Top (Room 3)
-      wall[18] = new Wall(10, 7, 2, 1);  //Lab Bot Left (Room 3)
-      wall[19] = new Wall(13, 7, 3, 1);  //Lab Bot Right (Room 3)
-      wall[20] = new Wall(10, 9, 6, 1);  //Fence 02 (Room 3)
-      //      if (xCam >= -224) {
-      //        stairs = new Warp(5, 1, 1, 1);
-      //      } else {
-      //        if (yCam >= -192) {
-      //          stairs = new Warp(13, 1, 1, 1);
-      //        } else {
-      //          stairs = new Warp(12, 7, 1, 1);
-      //        }
-      //      }
-    } 
     if (yCam <= 1280) {
       wall[0] = new Wall(16, -17, 2, 1);  //Fence L02 Right //
       wall[1] = new Wall(4, -17, 8, 1);  //Trees L02 Left //
@@ -230,6 +197,30 @@ void createWalls() {
       wall[18] = new Wall(12, -44, 15, 1);  //Bot Right //
       wall[19] = new Wall(9, -44, 1, 3);  //Top Left Vertical //
       wall[20] = new Wall(12, -44, 1, 3);  //Top Right Vertical //
+    }
+    if (yCam <= 128) {
+      wall[0] = new Wall(2, 14, 2, 1);  //Bot Left of Lake
+      wall[1] = new Wall(4, 10, 4, 4);  //Lake
+      wall[2] = new Wall(8, 13, 12, 1);  //Bot Right of Lake
+      wall[3] = new Wall(1, 13, 1, 1);  //Bot Corner Left
+      wall[4] = new Wall(0, -3, 1, 17);  //Main Left
+      wall[5] = new Wall(1, -3, 9, 1);  //Top Left of Grass
+      wall[6] = new Wall(12, -3, 8, 1); //Top Right of Grass
+      wall[7] = new Wall(19, -2, 1, 16); //Main Right
+      wall[8] = new Wall(9, -6, 1, 3);  //Top Left Grass Vertical
+      wall[9] = new Wall(12, -6, 1, 3);  //Top Right Grass Vertical (Room 3)
+      wall[10] = new Wall(4, -1, 4, 2); //Top House Red (Room 3)
+      wall[11] = new Wall(3, 1, 2, 1);  //Pannel Red (Room 3)
+      wall[12] = new Wall(6, 1, 2, 1);  //Right Bot Corner House Red (Room 3)
+      wall[13] = new Wall(4, 5, 4, 1);  //Fence 01 (Room 3)
+
+      wall[14] = new Wall(12, -1, 4, 2); //Top House Blue (Room 3)
+      wall[15] = new Wall(11, 1, 2, 1);  //Pannel Blue (Room 3)
+      wall[16] = new Wall(14, 1, 2, 1);  //Right Bot Corner House Blue (Room 3)
+      wall[17] = new Wall(10, 4, 6, 3);  //Lab Top (Room 3)
+      wall[18] = new Wall(10, 7, 2, 1);  //Lab Bot Left (Room 3)
+      wall[19] = new Wall(13, 7, 3, 1);  //Lab Bot Right (Room 3)
+      wall[20] = new Wall(10, 9, 6, 1);  //Fence 02 (Room 3)
     }
   } 
   if (room == 3) {
@@ -290,7 +281,7 @@ void createWalls() {
 
 
 void draw() {
-  frameRate(200);
+  //frameRate(200);
   if (!inGameMenu.menuIsOpen) {
     background(0);
   }
@@ -339,7 +330,7 @@ void keyPressed() {
     }
   }
   inGameMenu.theArrow();
-  if (key == ' '){
+  if (key == ' ') {
     frameRate(500);
   }
 }
@@ -347,7 +338,7 @@ void keyPressed() {
 void keyReleased() {
   inGameMenu.theArrowReleased();
   ash.redRel();
-  if (key == ' '){
+  if (key == ' ') {
     frameRate(60);
   }
 }
@@ -363,4 +354,3 @@ void stop() {
   minim.stop();
   super.stop();
 }
-
