@@ -339,11 +339,17 @@ void keyPressed() {
     }
   }
   inGameMenu.theArrow();
+  if (key == ' '){
+    frameRate(500);
+  }
 }
 
 void keyReleased() {
   inGameMenu.theArrowReleased();
   ash.redRel();
+  if (key == ' '){
+    frameRate(60);
+  }
 }
 
 // Read the video

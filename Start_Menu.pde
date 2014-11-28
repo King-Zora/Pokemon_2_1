@@ -4,6 +4,7 @@ class Menu{
   boolean menuIsOpen;
   int top, bot;
   int yIntervals;
+  PFont pokemonFont;
   
   Menu(){
    x = width - 157; 
