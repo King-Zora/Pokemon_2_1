@@ -13,6 +13,7 @@ Minim minim;
 int xCam, yCam;
 int xSpeed, ySpeed;
 int room;
+PFont font;
 
 //Create the image variables and arrays
 PImage[] Red_L = new PImage[2];
@@ -20,13 +21,13 @@ PImage[] Red_R = new PImage[2];
 PImage[] Red_D = new PImage[4];
 PImage[] Red_U = new PImage[4];
 
-PImage[] bg = new PImage[3];
+PImage[] bg = new PImage[7];
 
 PImage tS;
 
 //Call classes
 Red ash;
-Wall[] wall = new Wall[14];
+Wall[] wall = new Wall[21];
 Warp stairs;
 Menu inGameMenu;
 
@@ -34,9 +35,13 @@ void setup() {
   //Size of window
   size(320, 288); 
 
-  xCam = -96;
-  yCam = -192;
-  room = 0;
+  //  xCam = -96;
+  //  yCam = -192;
+  //  room = 0;
+
+  xCam = -320;
+  yCam = 1280;
+  room = 2;
 
   //intro = new Movie(this, "cinematic.mp4");
 
@@ -46,8 +51,6 @@ void setup() {
 
   //Create a new Red object
   ash = new Red(128, 128);
-
-  //  stairs = new Warp(8, -1, 1, 1);
 
   //Create the walls
 
@@ -73,6 +76,10 @@ void setup() {
   bg[0] = loadImage("First Room Test.png");
   bg[1] = loadImage("Room01.png");
   bg[2] = loadImage("Pallet Town.png");
+  bg[3] = loadImage("House Blue.png");
+  bg[4] = loadImage("Lab.png");
+  bg[5] = loadImage("route01.png");
+  bg[6] = loadImage("Viridian City 2.png");
 
   tS = loadImage("Title Screen.png");
 }
@@ -94,21 +101,57 @@ void createWalls() {
     wall[11] = new Wall(-1, -2, 1, 8);  //Pannel Red (Room 3)
     wall[12] = new Wall(1, 7, 8, 1);  //Right Bot Corner House Red (Room 3)
     wall[13] = new Wall(1, 8, 8, 1);  //Fence 01 (Room 3)
+    wall[14] = new Wall(11, 4, 4, 2); //Top House Blue (Room 3)
+    wall[15] = new Wall(10, 6, 2, 1);  //Pannel Blue (Room 3)
+    wall[16] = new Wall(13, 6, 2, 1);  //Right Bot Corner House Blue (Room 3)
+    wall[17] = new Wall(9, 9, 6, 3);  //Lab Top (Room 3)
+    wall[18] = new Wall(9, 12, 2, 1);  //Lab Bot Left (Room 3)
+    wall[19] = new Wall(12, 12, 3, 1);  //Lab Bot Right (Room 3)
+    wall[20] = new Wall(9, 14, 6, 1);  //Fence 02 (Room 3)
 
     stairs = new Warp(8, -1, 1, 1);
-  } else {
-    if (room == 1) {
-      wall[0] = new Wall(4, -1, 1, 1);  //TV
-      wall[1] = new Wall(4, 2, 2, 2);  //Table
-      wall[2] = new Wall(1, -1, 2, 1);  //Shelves
-      wall[3] = new Wall(5, 6, 4, 1);  //Bot Right
-      wall[4] = new Wall(1, 6, 2, 1);  //Bot Left
-      if (yCam > -160) {
-        stairs = new Warp(8, -1, 1, 1);
-      } else {
-        stairs = new Warp(3, 6, 2, 1);
-      }
+  } 
+  if (room == 1) {
+    wall[0] = new Wall(4, -1, 1, 1);  //TV
+    wall[1] = new Wall(4, 2, 2, 2);  //Table
+    wall[2] = new Wall(1, -1, 2, 1);  //Shelves
+    wall[3] = new Wall(5, 6, 4, 1);  //Bot Right
+    wall[4] = new Wall(1, 6, 2, 1);  //Bot Left
+
+    //Reset walls
+    wall[5] = new Wall(0, -2, 1, 8);  //Left
+    wall[6] = new Wall(1, -2, 9, 1); //Top
+    wall[7] = new Wall(9, -2, 1, 8); // Right
+    wall[8] = new Wall(3, 7, 2, 1);  //Block Door (Room 2)
+    wall[9] = new Wall(11, -1, 1, 3);  //Top Right Grass Vertical (Room 3)
+    wall[10] = new Wall(0, -3, 9, 1); //Top House Red (Room 3)
+    wall[11] = new Wall(-1, -2, 1, 8);  //Pannel Red (Room 3)
+    wall[12] = new Wall(1, 7, 8, 1);  //Right Bot Corner House Red (Room 3)
+    wall[13] = new Wall(1, 8, 8, 1);  //Fence 01 (Room 3)
+    wall[14] = new Wall(11, 4, 4, 2); //Top House Blue (Room 3)
+    wall[15] = new Wall(10, 6, 2, 1);  //Pannel Blue (Room 3)
+    wall[16] = new Wall(13, 6, 2, 1);  //Right Bot Corner House Blue (Room 3)
+    wall[17] = new Wall(9, 9, 6, 3);  //Lab Top (Room 3)
+    wall[18] = new Wall(9, 12, 2, 1);  //Lab Bot Left (Room 3)
+    wall[19] = new Wall(12, 12, 3, 1);  //Lab Bot Right (Room 3)
+    wall[20] = new Wall(9, 14, 6, 1);  //Fence 02 (Room 3)
+    if (yCam > -160) {
+      stairs = new Warp(8, -1, 1, 1);
     } else {
+      stairs = new Warp(3, 6, 2, 1);
+    }
+  } 
+  if (room == 2) {
+    if (xCam >= -224) {
+      stairs = new Warp(5, 1, 1, 1);
+    } else {
+      if (yCam >= -192) {
+        stairs = new Warp(13, 1, 1, 1);
+      } else {
+        stairs = new Warp(12, 7, 1, 1);
+      }
+    }
+    if (yCam <= 128) {
       wall[0] = new Wall(2, 14, 2, 1);  //Bot Left of Lake
       wall[1] = new Wall(4, 10, 4, 4);  //Lake
       wall[2] = new Wall(8, 13, 12, 1);  //Bot Right of Lake
@@ -118,21 +161,141 @@ void createWalls() {
       wall[6] = new Wall(12, -3, 8, 1); //Top Right of Grass
       wall[7] = new Wall(19, -2, 1, 16); //Main Right
       wall[8] = new Wall(9, -6, 1, 3);  //Top Left Grass Vertical
+      wall[9] = new Wall(12, -6, 1, 3);  //Top Right Grass Vertical (Room 3)
       wall[10] = new Wall(4, -1, 4, 2); //Top House Red (Room 3)
       wall[11] = new Wall(3, 1, 2, 1);  //Pannel Red (Room 3)
       wall[12] = new Wall(6, 1, 2, 1);  //Right Bot Corner House Red (Room 3)
       wall[13] = new Wall(4, 5, 4, 1);  //Fence 01 (Room 3)
 
-      stairs = new Warp(5, 1, 1, 1);
+      wall[14] = new Wall(12, -1, 4, 2); //Top House Blue (Room 3)
+      wall[15] = new Wall(11, 1, 2, 1);  //Pannel Blue (Room 3)
+      wall[16] = new Wall(14, 1, 2, 1);  //Right Bot Corner House Blue (Room 3)
+      wall[17] = new Wall(10, 4, 6, 3);  //Lab Top (Room 3)
+      wall[18] = new Wall(10, 7, 2, 1);  //Lab Bot Left (Room 3)
+      wall[19] = new Wall(13, 7, 3, 1);  //Lab Bot Right (Room 3)
+      wall[20] = new Wall(10, 9, 6, 1);  //Fence 02 (Room 3)
+      //      if (xCam >= -224) {
+      //        stairs = new Warp(5, 1, 1, 1);
+      //      } else {
+      //        if (yCam >= -192) {
+      //          stairs = new Warp(13, 1, 1, 1);
+      //        } else {
+      //          stairs = new Warp(12, 7, 1, 1);
+      //        }
+      //      }
+    } 
+    if (yCam <= 1280) {
+      wall[0] = new Wall(16, -17, 2, 1);  //Fence L02 Right //
+      wall[1] = new Wall(4, -17, 8, 1);  //Trees L02 Left //
+      wall[2] = new Wall(4, -13, 2, 1);  //Fence L01 Left //
+      wall[3] = new Wall(9, -13, 9, 1);  //Fence L01 Right //
+      wall[4] = new Wall(3, -39, 1, 31);  //Main Left //
+      wall[5] = new Wall(3, -8, 7, 1);  //Bot Left //
+      wall[6] = new Wall(12, -8, 7, 1); //Bot Right //
+      wall[7] = new Wall(18, -39, 1, 31); //Main Right //
+      wall[8] = new Wall(9, -8, 1, 6);  //Top Left Grass Vertical //
+      wall[9] = new Wall(12, -8, 1, 6);  //Top Right Grass Vertical (Room 3) //
+      wall[10] = new Wall(4, -21, 1, 1); //Fence L03 Left //
+      wall[11] = new Wall(6, -21, 3, 1);  //Fence L03 Middle //
+      wall[12] = new Wall(10, -21, 8, 1);  //Fence L03 Right //
+      wall[13] = new Wall(4, -27, 10, 1);  //Fence L04 Left //
+
+      wall[14] = new Wall(4, -31, 6, 1); //Fence L05 Left //
+      wall[15] = new Wall(4, -35, 10, 1);  //Fence L06 Left //
+      wall[16] = new Wall(9, -36, 1, 6);  //Trees Vertical //
+      wall[17] = new Wall(4, -39, 6, 1);  //Top Left //
+      wall[18] = new Wall(12, -39, 6, 1);  //Top Right //
+      wall[19] = new Wall(9, -42, 1, 3);  //Top Left Vertical //
+      wall[20] = new Wall(12, -42, 1, 3);  //Top Right Vertical //
+    } else {
+      wall[0] = new Wall(16, -17, 2, 1);  //Fence L02 Right 
+      wall[1] = new Wall(4, -17, 8, 1);  //Trees L02 Left 
+      wall[2] = new Wall(4, -13, 2, 1);  //Fence L01 Left 
+      wall[3] = new Wall(9, -13, 9, 1);  //Fence L01 Right 
+      wall[4] = new Wall(-7, -57, 1, 14);  //Main Left // 
+      wall[5] = new Wall(3, -8, 7, 1);  //Bot Left 
+      wall[6] = new Wall(12, -8, 7, 1); //Bot Right 
+      wall[7] = new Wall(26, -75, 1, 31); //Main Right 
+      wall[8] = new Wall(9, -8, 1, 6);  //Top Left Grass Vertical 
+      wall[9] = new Wall(12, -8, 1, 6);  //Top Right Grass Vertical (Room 3) 
+      wall[10] = new Wall(4, -21, 1, 1); //Fence L03 Left 
+      wall[11] = new Wall(6, -21, 3, 1);  //Fence L03 Middle 
+      wall[12] = new Wall(10, -21, 8, 1);  //Fence L03 Right 
+      wall[13] = new Wall(4, -27, 10, 1);  //Fence L04 Left 
+
+      wall[14] = new Wall(4, -31, 6, 1); //Fence L05 Left 
+      wall[15] = new Wall(4, -35, 10, 1);  //Fence L06 Left 
+      wall[16] = new Wall(9, -36, 1, 6);  //Trees Vertical 
+      wall[17] = new Wall(-7, -44, 16, 1);  //Top Left //
+      wall[18] = new Wall(12, -44, 15, 1);  //Bot Right //
+      wall[19] = new Wall(9, -44, 1, 3);  //Top Left Vertical //
+      wall[20] = new Wall(12, -44, 1, 3);  //Top Right Vertical //
     }
+  } 
+  if (room == 3) {
+    wall[0] = new Wall(4, -5, 1, 1);  //TV
+    wall[1] = new Wall(0, -3, 2, 2);  //Table
+    wall[2] = new Wall(-3, -5, 2, 1);  //Shelves
+    wall[3] = new Wall(2, 2, 4, 1);  //Bot Right
+    wall[4] = new Wall(-3, 2, 2, 1);  //Bot Left
+
+    //Reset walls
+    wall[5] = new Wall(-4, -6, 1, 8);  //Left
+    wall[6] = new Wall(-3, -6, 9, 1); //Top
+    wall[7] = new Wall(5, -6, 1, 8); // Right
+    wall[8] = new Wall(-1, 3, 2, 1);  //Block Door (Room 2)
+    wall[9] = new Wall(7, -5, 1, 3);  //Top Right Grass Vertical (Room 3)
+    wall[10] = new Wall(-4, -7, 9, 1); //Top House Red (Room 3)
+    wall[11] = new Wall(-5, -6, 1, 8);  //Pannel Red (Room 3)
+    wall[12] = new Wall(1, 2, 8, 1);  //Right Bot Corner House Red (Room 3)
+    wall[13] = new Wall(-3, 4, 8, 1);  //Fence 01 (Room 3)
+    wall[14] = new Wall(7, 0, 4, 2); //Top House Blue (Room 3)
+    wall[15] = new Wall(4, 0, 1, 2);  //Pannel Blue (Room 3)
+    wall[16] = new Wall(-3, 0, 1, 2);  //Right Bot Corner House Blue (Room 3)
+    wall[17] = new Wall(5, 5, 6, 3);  //Lab Top (Room 3)
+    wall[18] = new Wall(5, 8, 2, 1);  //Lab Bot Left (Room 3)
+    wall[19] = new Wall(8, 8, 3, 1);  //Lab Bot Right (Room 3)
+    wall[20] = new Wall(5, 10, 6, 1);  //Fence 02 (Room 3)
+
+    stairs = new Warp(-1, 2, 2, 1);
+  } 
+  if (room == 4) {
+    wall[0] = new Wall(3, -5, 4, 1);  //TV
+    wall[1] = new Wall(3, -3, 4, 1);  //Table //
+    wall[2] = new Wall(-3, -5, 4, 1);  //Shelves
+    wall[3] = new Wall(3, 6, 4, 1);  //Bot Right //
+    wall[4] = new Wall(-3, 6, 4, 1);  //Bot Left //
+
+    //Reset walls
+    wall[5] = new Wall(-4, -6, 1, 12);  //Left //
+    wall[6] = new Wall(-3, -6, 10, 1); //Top
+    wall[7] = new Wall(7, -6, 1, 12); // Right //
+    wall[8] = new Wall(1, 7, 2, 1);  //Block Door (Room 2) //
+    wall[9] = new Wall(7, -5, 1, 3);  //Top Right Grass Vertical (Room 3)
+    wall[10] = new Wall(-4, -7, 9, 1); //Top House Red (Room 3)
+    wall[11] = new Wall(-5, -6, 1, 8);  //Pannel Red (Room 3)
+    wall[12] = new Wall(1, 7, 8, 1);  //Right Bot Corner House Red (Room 3)
+    wall[13] = new Wall(-3, 7, 8, 1);  //Fence 01 (Room 3) //
+    wall[14] = new Wall(7, 0, 4, 2); //Top House Blue (Room 3)
+    wall[15] = new Wall(3, 0, 4, 2);  //Pannel Blue (Room 3)
+    wall[16] = new Wall(-3, 0, 4, 2);  //Right Bot Corner House Blue (Room 3)
+    wall[17] = new Wall(7, 5, 6, 3);  //Lab Top (Room 3)
+    wall[18] = new Wall(5, 8, 2, 1);  //Lab Bot Left (Room 3)
+    wall[19] = new Wall(8, 8, 3, 1);  //Lab Bot Right (Room 3)
+    wall[20] = new Wall(5, 10, 6, 1);  //Fence 02 (Room 3)
+
+    stairs = new Warp(1, 6, 2, 1); //
   }
 }
 
 
-
 void draw() {
-  background(0);
+  frameRate(200);
+  if (!inGameMenu.menuIsOpen) {
+    background(0);
+  }
   println(xCam);
+  println(yCam);
   createWalls();
   if (ash.screenState == 0) {
     //Title Screen
@@ -141,7 +304,19 @@ void draw() {
   } else {
     //Gameplay
     if (!inGameMenu.menuIsOpen) {
+      if (room == 2) {
+        image(bg[6], xCam - 225, yCam - 2200);
+        image(bg[5], xCam + 96, yCam - 1150);
+      }
       image(bg[room], xCam, yCam);
+      if (room == 2) {
+        if (yCam >= 160) {
+          image(bg[5], xCam + 96, yCam - 1150);
+        }
+        if (yCam >= 1312) {
+          image(bg[6], xCam - 225, yCam - 2200);
+        }
+      }
       ash.run();
     }
     inGameMenu.display();
@@ -152,7 +327,10 @@ void keyPressed() {
   if (key == ENTER) {
     //Change from tittle screen to gameplay when pressed
     if (ash.screenState == 0) {
-      ash.screenState = 1;    
+      ash.screenState = 1; 
+      fill(255);
+      //      PFont font;
+      //      font = loadFont("Pokemon GB.ttf");  
       //intro.stop();  
       //music0.loop();
     } else if (ash.screenState == 1) {
@@ -179,3 +357,4 @@ void stop() {
   minim.stop();
   super.stop();
 }
+

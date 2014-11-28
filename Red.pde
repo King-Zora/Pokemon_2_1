@@ -29,6 +29,7 @@ class Red {
   }
 
   void run() {
+    resetCol();
     for (int j = 0; j < wall.length; j++) {
       wall[j].run(ash);
 
@@ -45,23 +46,23 @@ class Red {
     display();
 
     actions();
-    
+
     checkCollisions();
 
     warping(stairs);
   }
-  
+
   void checkCollisions() {
     if (collideD || collideU) {
       ySpeed = 0;
     }  
     if (collideR || collideL) {
-      xSpeed = 0;  
+      xSpeed = 0;
     }
   }
 
   void display() {
-    rect(x, y, side, side);
+    //rect(x, y, side, side);
     if (!walk) {
       if (direction == 0) {
         image(Red_D[0], x, y);
@@ -199,7 +200,6 @@ class Red {
     if (canWarp == 0) {
       if (x + side <= theWarp.x + theWarp.w && x >= theWarp.x && y == theWarp.y) {
         xSpeed = 0;
-        direction = 3;
         canWarp = 1;
         if (room == 0) {
           room = 1;
@@ -208,14 +208,44 @@ class Red {
             if (yCam > -160) {
               room = 0;
             } else {
-              direction = 0;
               room = 2; 
               yCam = -96;
               xCam = -128;
             }
+          } else {
+            if (room == 2) {
+              if (xCam >= -224) {
+                room = 1;
+                xCam = -64;
+                yCam = -256;
+              } else {
+                if (yCam > -160) {
+                  room = 3;
+                  xCam = 64;
+                  yCam = -128;
+                } else {
+                  room = 4;
+                  xCam = 0;
+                  yCam = -256;
+                }
+              }
+            } else {
+              if (room == 3) {
+                room = 2;
+                xCam = -384;
+                yCam = -96;
+              } else {
+                if (room == 4) {
+                  room = 2;
+                  xCam = -352;
+                  yCam = -288;
+                }
+              }  
+            }
           }
         }
       }
+      createWalls();
     } else {
       if (x != theWarp.x || y != theWarp.y) {
         canWarp = 0;

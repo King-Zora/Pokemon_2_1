@@ -10,7 +10,7 @@ class Wall extends Block {
   }
   
   void display() {
-    fill(255);
+    fill(255, 100);
     super.display();  
   }
 }

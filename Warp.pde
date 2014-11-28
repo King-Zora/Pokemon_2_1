@@ -10,7 +10,7 @@ class Warp extends Block {
   }
   
     void display() {
-    fill(0);
+    fill(0, 255, 0);
     super.display();  
   }
   
