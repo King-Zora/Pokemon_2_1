@@ -88,7 +88,6 @@ void setup() {
 
   tS = loadImage("Title Screen.png");
   
-  theBattleSystem.display();
 }
 
 void createWalls() {
@@ -296,6 +295,7 @@ void draw() {
     //Title Screen
     //intro.play();
     //image(intro, 0, 0, 320, 288);
+    theBattleSystem.display();//checking the battle system
   } else {
     //Gameplay
     if (!inGameMenu.menuIsOpen) {
@@ -320,6 +320,11 @@ void draw() {
 }
 
 void keyPressed() {
+  if (ash.screenState == 0){ //checking the battle system
+    theBattleSystem.actions();
+  }
+    
+  
   if (key == ENTER) {
     //Change from tittle screen to gameplay when pressed
     if (ash.screenState == 0) {
