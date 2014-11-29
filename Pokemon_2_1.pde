@@ -30,8 +30,11 @@ Red ash;
 Wall[] wall = new Wall[21];
 Warp stairs;
 Menu inGameMenu;
+BattleSystem theBattleSystem;
 
 void setup() {
+  background(0);
+  
   //Size of window
   size(320, 288); 
 
@@ -55,6 +58,8 @@ void setup() {
   //Create the walls
 
   inGameMenu = new Menu();
+  
+  theBattleSystem = new BattleSystem();
 
   //Load the images
   Red_L[0] = loadImage("Red_L0.png");
@@ -82,6 +87,8 @@ void setup() {
   bg[6] = loadImage("Viridian City 2.png");
 
   tS = loadImage("Title Screen.png");
+  
+  theBattleSystem.display();
 }
 
 void createWalls() {
@@ -282,9 +289,6 @@ void createWalls() {
 
 void draw() {
   //frameRate(200);
-  if (!inGameMenu.menuIsOpen) {
-    background(0);
-  }
   println(xCam);
   println(yCam);
   createWalls();
@@ -295,6 +299,7 @@ void draw() {
   } else {
     //Gameplay
     if (!inGameMenu.menuIsOpen) {
+      background(0);
       if (room == 2) {
         image(bg[6], xCam - 225, yCam - 2200);
         image(bg[5], xCam + 96, yCam - 1150);
@@ -320,8 +325,6 @@ void keyPressed() {
     if (ash.screenState == 0) {
       ash.screenState = 1; 
       fill(255);
-      //      PFont font;
-      //      font = loadFont("Pokemon GB.ttf");  
       //intro.stop();  
       //music0.loop();
     } else if (ash.screenState == 1) {
@@ -330,6 +333,7 @@ void keyPressed() {
     }
   }
   inGameMenu.theArrow();
+  inGameMenu.isAnythingOpen(wall);
   if (key == ' ') {
     frameRate(500);
   }
