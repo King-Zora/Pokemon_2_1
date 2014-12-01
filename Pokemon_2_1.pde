@@ -38,13 +38,13 @@ void setup() {
   //Size of window
   size(320, 288); 
 
-  xCam = -96;
-  yCam = -192;
-  room = 2;
+//  xCam = -96;
+//  yCam = -192;
+//  room = 2;
 
-  //  xCam = -320;
-  //  yCam = 1280;
-  //  room = 2;
+    xCam = -320;
+    yCam = 1280;
+    room = 2;
 
   //intro = new Movie(this, "cinematic.mp4");
 
@@ -186,19 +186,19 @@ void createWalls() {
       wall[2] = new Wall(4, -13, 2, 1);  //Fence L01 Left 
       wall[3] = new Wall(9, -13, 9, 1);  //Fence L01 Right 
       wall[4] = new Wall(-7, -57, 1, 14);  //Main Left // 
-      wall[5] = new Wall(3, -8, 7, 1);  //Bot Left 
-      wall[6] = new Wall(12, -8, 7, 1); //Bot Right 
-      wall[7] = new Wall(26, -75, 1, 31); //Main Right 
-      wall[8] = new Wall(9, -8, 1, 6);  //Top Left Grass Vertical 
-      wall[9] = new Wall(12, -8, 1, 6);  //Top Right Grass Vertical (Room 3) 
-      wall[10] = new Wall(4, -21, 1, 1); //Fence L03 Left 
-      wall[11] = new Wall(6, -21, 3, 1);  //Fence L03 Middle 
-      wall[12] = new Wall(10, -21, 8, 1);  //Fence L03 Right 
-      wall[13] = new Wall(4, -27, 10, 1);  //Fence L04 Left 
+      wall[5] = new Wall(18, -59, 4, 3);  //Top Mart // 
+      wall[6] = new Wall(-6, -54, 4, 1); //Bushes Full Left Top Left of Lake // 
+      wall[7] = new Wall(26, -74, 1, 30); //Main Right //
+      wall[8] = new Wall(-2, -53, 1, 1);  //Tree Top Left of Lake //
+      wall[9] = new Wall(-2, -52, 2, 1);  //Bush Top Left of Lake // 
+      wall[10] = new Wall(14, -50, 2, 1); //Bot Right Pokemon Center //
+      wall[11] = new Wall(12, -50, 1, 1);  //Bot Left pokemon Center //
+      wall[12] = new Wall(12, -53, 4, 3);  //Pokemon Center Top //
+      wall[13] = new Wall(10, -48, 16, 1);  //Fence L01 Right // 
 
-      wall[14] = new Wall(4, -31, 6, 1); //Fence L05 Left 
-      wall[15] = new Wall(4, -35, 10, 1);  //Fence L06 Left 
-      wall[16] = new Wall(9, -36, 1, 6);  //Trees Vertical 
+      wall[14] = new Wall(6, -48, 3, 1); //Fence L01 Middle //
+      wall[15] = new Wall(-2, -51, 6, 3);  //Lake //
+      wall[16] = new Wall(-7, -48, 12, 1);  //Rence L01 Left // 
       wall[17] = new Wall(-7, -44, 16, 1);  //Top Left //
       wall[18] = new Wall(12, -44, 15, 1);  //Bot Right //
       wall[19] = new Wall(9, -44, 1, 3);  //Top Left Vertical //
