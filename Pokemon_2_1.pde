@@ -27,6 +27,7 @@ PImage tS;
 
 //Call classes
 Red ash;
+Grass[] grass = new Grass[8];
 Wall[] wall = new Wall[21];
 Warp stairs;
 Menu inGameMenu;
@@ -34,17 +35,17 @@ BattleSystem theBattleSystem;
 
 void setup() {
   background(0);
-  
+
   //Size of window
   size(320, 288); 
 
-//  xCam = -96;
-//  yCam = -192;
-//  room = 2;
+  xCam = -96;
+  yCam = -192;
+  //  room = 0;
 
-    xCam = -320;
-    yCam = 1280;
-    room = 2;
+  //    xCam = -320;
+  //    yCam = 1280;
+  room = 2;
 
   //intro = new Movie(this, "cinematic.mp4");
 
@@ -58,7 +59,7 @@ void setup() {
   //Create the walls
 
   inGameMenu = new Menu();
-  
+
   theBattleSystem = new BattleSystem();
 
   //Load the images
@@ -87,10 +88,17 @@ void setup() {
   bg[6] = loadImage("Viridian City 2.png");
 
   tS = loadImage("Title Screen.png");
-  
 }
 
 void createWalls() {
+  grass[0] = new Grass (10, -8, 2, 6); 
+  grass[1] = new Grass (4, -10, 4, 2); 
+  grass[2] = new Grass (6, -12, 4, 2); 
+  grass[3] = new Grass (12, -10, 4, 2); 
+  grass[4] = new Grass (14, -12, 4, 2); 
+  grass[5] = new Grass (12, -18, 4, 4); 
+  grass[6] = new Grass (14, -28, 4, 4); 
+  grass[7] = new Grass (10, -34, 8, 4); 
   if (room == 0) {
     //Create all the walls
     wall[0] = new Wall(1, -1, 3, 1);  //Desk
@@ -320,11 +328,11 @@ void draw() {
 }
 
 void keyPressed() {
-  if (ash.screenState == 0){ //checking the battle system
+  if (ash.screenState == 0) { //checking the battle system
     theBattleSystem.actions();
   }
-    
-  
+
+
   if (key == ENTER) {
     //Change from tittle screen to gameplay when pressed
     if (ash.screenState == 0) {

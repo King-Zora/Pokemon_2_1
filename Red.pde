@@ -35,13 +35,12 @@ class Red {
 
       collision(wall[j]);
     }
+    
+    for (int h = 0; h < grass.length; h++) {
+      grass[h].run(ash);  
+    }
 
     stairs.run(ash);
-
-    //    println(collideD);
-    //    println(collideU);
-    //    println(collideR);
-    //    println(collideL);
 
     display();
 

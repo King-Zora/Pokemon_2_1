@@ -1,6 +1,6 @@
-class Warp extends Block {
+class Grass extends Block {
 
-  Warp(int _x, int _y, int _w, int _h) {
+  Grass(int _x, int _y, int _w, int _h) {
     super();
     side = 32; //Dimensions of one block
     x = xCam + (side * _x) + (3 * side);
@@ -10,7 +10,7 @@ class Warp extends Block {
   }
 
   void display() {
-    fill(255, 0, 0);
+    fill(0, 255, 0);
     super.display();
   }
 }
