@@ -1,5 +1,5 @@
 class BattleSystem{
-  PImage playerPokemonBar, enemyPokemonBar, playerBattleBar1, playerBattleBar2, arrow;
+  PImage playerPokemonBar, enemyPokemonBar, playerBattleBar1, playerBattleBar2, arrow, testPokemonB;
   int arrowX, arrowY;
  
  BattleSystem(){
@@ -8,6 +8,7 @@ class BattleSystem{
    enemyPokemonBar = loadImage("BattleEnemyBar.PNG");
    playerBattleBar2 = loadImage("BattleBar2.PNG");
    arrow = loadImage("arrow.PNG");
+   testPokemonB = loadImage("Pokemon_Back_Poses/Charmander.png");
    arrowX = width-174;
    arrowY = height-65;
  }
@@ -19,6 +20,7 @@ class BattleSystem{
     image(playerPokemonBar, width-183, height-160);
     image(playerBattleBar2, width-188, height-95);
     image(arrow, arrowX, arrowY);
+    image(testPokemonB, 20, height-126, 90, 64);
   }
   
   void actions(){
