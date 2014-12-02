@@ -20,7 +20,6 @@ class BattleSystem{
     image(playerPokemonBar, width-183, height-160);
     image(playerBattleBar2, width-188, height-95);
     image(arrow, arrowX, arrowY);
-    image(testPokemonB, 20, height-126, 90, 64);
   }
   
   void actions(){

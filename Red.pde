@@ -35,9 +35,15 @@ class Red {
 
       collision(wall[j]);
     }
-    
+
     for (int h = 0; h < grass.length; h++) {
-      grass[h].run(ash);  
+      grass[h].run(ash);
+    }
+
+    for (int h = 0; h < fences.length; h++) {
+      fences[h].run(ash);
+
+      fenceJump(fences[h]);
     }
 
     stairs.run(ash);
@@ -57,6 +63,18 @@ class Red {
     }  
     if (collideR || collideL) {
       xSpeed = 0;
+    }
+  }
+
+  void fenceJump(Fence theFence) {
+    if ((x + side > theFence.x) && (x < theFence.x + theFence.w) && (y == theFence.y + theFence.h)) {
+      collideU = true;
+    }
+    if ((y + side > theFence.y) && (y < theFence.y + theFence.h) && (x + side == theFence.x)) {
+      collideR = true;
+    }
+    if ((y + side > theFence.y) && (y < theFence.y + theFence.h) && (x == theFence.x + theFence.w)) {
+      collideL = true;
     }
   }
 
@@ -239,7 +257,7 @@ class Red {
                   xCam = -352;
                   yCam = -288;
                 }
-              }  
+              }
             }
           }
         }
