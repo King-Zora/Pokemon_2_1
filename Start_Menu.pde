@@ -1,9 +1,10 @@
 class Menu{
-  float x, y, arrowX, arrowY, pokedexY, pokemonY, itemY, charecterY, saveY, optionY, exitY;
+  float x, y, arrowX, arrowY, pokedexY, pokemonY, itemY, charecterY, saveY, optionY, exitY, cancelY;
   PImage startMenu, arrow, pokedex, pokemon, item, charecter, save, option, exit, item_screen, char_screen;
   boolean menuIsOpen, itemIsOpen, charIsOpen;
   int top, bot;
   int yIntervals;
+  PFont pokefont;
   
   Menu(){
    x = width - 157; 
@@ -34,6 +35,9 @@ class Menu{
    saveY = 157;
    optionY = 190;
    exitY = 223;
+   cancelY = 64;
+   pokefont = loadFont("PokemonGB-18.vlw");
+   textFont(pokefont, 18);
   }
   
   void display(){
@@ -48,7 +52,9 @@ class Menu{
       image(option, x+35, optionY);
       image(exit, x+35, exitY);
       if (itemIsOpen){
+        fill(0);
         image(item_screen, width-235, 27);
+        text("cancel", x-55, cancelY);
       }
       if (charIsOpen){
         image(char_screen, 1, 0);
@@ -72,6 +78,7 @@ class Menu{
       if (key == 'x'){
         if (arrowY == itemY){
           itemIsOpen = true;
+          
         }
         if (arrowY == charecterY){
           charIsOpen = true;
@@ -105,7 +112,7 @@ class Menu{
   }
   
   void theArrow() {
-    if (menuIsOpen){
+    if (menuIsOpen && !itemIsOpen && !charIsOpen){
       if (keyCode == DOWN){
         arrowY += yIntervals;
       }
