@@ -364,6 +364,8 @@ void draw() {
 }
 
 void keyPressed() {
+  theBattleSystem.didBattleStart();
+  
   if (ash.screenState == 0) { //checking the battle system
     theBattleSystem.actions();
   }
