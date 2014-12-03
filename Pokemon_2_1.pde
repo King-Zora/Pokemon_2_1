@@ -380,7 +380,7 @@ void keyPressed() {
       //music0.loop();
     } else if (ash.screenState == 1) {
       //Change from gameplay to menu
-      inGameMenu.isMenuOpen();
+      inGameMenu.isMenuOpen(theBattleSystem);
     }
   }
   inGameMenu.theArrow();

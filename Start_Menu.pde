@@ -1,6 +1,6 @@
 class Menu{
-  float x, y, arrowX, arrowY, pokedexY, pokemonY, itemY, charecterY, saveY, optionY, exitY, cancelY;
-  PImage startMenu, arrow, pokedex, pokemon, item, charecter, save, option, exit, item_screen, char_screen;
+  float x, y, arrowX, arrowY, pokedexY, pokemonY, itemY, charecterY, saveY, optionY, exitY, cancelY, itemArrowY;
+  PImage startMenu, arrow, pokedex, pokemon, item, charecter, save, option, exit, item_screen, char_screen, itemArrow;
   boolean menuIsOpen, itemIsOpen, charIsOpen;
   int top, bot;
   int yIntervals;
@@ -10,12 +10,13 @@ class Menu{
    x = width - 157; 
    y = 0;
    arrowX = x + 15;
-   arrowY = y + 33;
+   arrowY = y + 25;
    top = 25;
    bot = 223;
    yIntervals = 33;
    startMenu = loadImage("Start_Menu.PNG");
    arrow = loadImage("arrow.PNG");
+   itemArrow = loadImage("arrow.PNG");
    pokedex = loadImage("pokédex.PNG");
    pokemon = loadImage("pokémon.PNG");
    item = loadImage("item.PNG");
@@ -36,6 +37,7 @@ class Menu{
    optionY = 190;
    exitY = 223;
    cancelY = 64;
+   itemArrowY = cancelY-15;
    pokefont = loadFont("PokemonGB-18.vlw");
    textFont(pokefont, 18);
   }
@@ -54,7 +56,8 @@ class Menu{
       if (itemIsOpen){
         fill(0);
         image(item_screen, width-235, 27);
-        text("cancel", x-55, cancelY);
+        text("cancel", x-45, cancelY);
+        image(itemArrow, x-65, itemArrowY);
       }
       if (charIsOpen){
         image(char_screen, 1, 0);
@@ -62,8 +65,8 @@ class Menu{
     }
   }
   
-  void isMenuOpen(){
-    if (!menuIsOpen){
+  void isMenuOpen(BattleSystem anyBattle){
+    if (!menuIsOpen && !anyBattle.battleStart){
       menuIsOpen = true;
     }
     else if(menuIsOpen){
@@ -78,13 +81,28 @@ class Menu{
       if (key == 'x'){
         if (arrowY == itemY){
           itemIsOpen = true;
-          
         }
         if (arrowY == charecterY){
           charIsOpen = true;
         }
         if (arrowY == exitY){
           menuIsOpen = false;
+        }
+        if (itemArrowY == cancelY-15){
+          if (room == 2) {
+            image(bg[6], xCam - 225, yCam - 2200);
+            image(bg[5], xCam + 96, yCam - 1150);
+          }
+          image(bg[room], xCam, yCam);
+          if (room == 2) {
+            if (yCam >= 160) {
+              image(bg[5], xCam + 96, yCam - 1150);
+            }
+            if (yCam >= 1312) {
+              image(bg[6], xCam - 225, yCam - 2200);
+            }
+          }
+          itemIsOpen = false;
         }
       }
       if (key == 'z'){
