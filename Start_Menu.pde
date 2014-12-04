@@ -79,16 +79,10 @@ class Menu{
   void isAnythingOpen(Wall[] anyWall){
     if (menuIsOpen){
       if (key == 'x'){
-        if (arrowY == itemY){
+        if ((arrowY == itemY) && !itemIsOpen){
           itemIsOpen = true;
         }
-        if (arrowY == charecterY){
-          charIsOpen = true;
-        }
-        if (arrowY == exitY){
-          menuIsOpen = false;
-        }
-        if (itemArrowY == cancelY-15){
+        else if ((itemArrowY == cancelY-15) && itemIsOpen){
           if (room == 2) {
             image(bg[6], xCam - 225, yCam - 2200);
             image(bg[5], xCam + 96, yCam - 1150);
@@ -103,6 +97,12 @@ class Menu{
             }
           }
           itemIsOpen = false;
+        }
+        if (arrowY == charecterY){
+          charIsOpen = true;
+        }
+        if (arrowY == exitY){
+          menuIsOpen = false;
         }
       }
       if (key == 'z'){
