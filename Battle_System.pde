@@ -1,12 +1,12 @@
 class BattleSystem{
-  PImage playerPokemonBar, enemyPokemonBar, playerBattleBar1, playerBattleBar2, arrow, testPokemonB;
+  PImage playerPokemonBar, enemyPokemonBar, playerBattleBar2, arrow, testPokemonB;
   int arrowX, arrowY;
   boolean battleStart, battleDialogue;
   PFont battleDialogue1;
  
  BattleSystem(){
    playerPokemonBar = loadImage("BattlePlayerBar.PNG");
-   playerBattleBar1 = loadImage("BattleBar.PNG");
+//   playerBattleBar1 = loadImage("BattleBar.PNG");
    enemyPokemonBar = loadImage("BattleEnemyBar.PNG");
    playerBattleBar2 = loadImage("BattleBar2.PNG");
    arrow = loadImage("arrow.PNG");

@@ -10,6 +10,8 @@ class Block {
     display();
 
     move(ash);
+    
+    npcText(ash); 
   }
 
   void display() {
@@ -26,5 +28,9 @@ class Block {
         x += xSpeed;
       }
     }
+  }
+  
+  void npcText(Red theKid) {
+    
   }
 }
