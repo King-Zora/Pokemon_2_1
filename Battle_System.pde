@@ -1,18 +1,18 @@
 class BattleSystem{
   PImage playerPokemonBar, enemyPokemonBar, playerBattleBar2, arrow, testPokemonB;
-  int arrowX, arrowY;
+  int arrowX, arrowY, lineNumber;
   boolean battleStart, battleDialogue;
-  PFont battleDialogue1;
+  PFont battleText;
  
  BattleSystem(){
    playerPokemonBar = loadImage("BattlePlayerBar.PNG");
-//   playerBattleBar1 = loadImage("BattleBar.PNG");
    enemyPokemonBar = loadImage("BattleEnemyBar.PNG");
    playerBattleBar2 = loadImage("BattleBar2.PNG");
    arrow = loadImage("arrow.PNG");
    testPokemonB = loadImage("Pokemon_Back_Poses/Charmander.png");
-   battleDialogue1 = loadFont("PokemonGB-18.vlw");
-   textFont(battleDialogue1, 18);
+   battleText = loadFont("PokemonGB-18.vlw");
+   textFont(battleText, 14);
+   lineNumber = 0;
    arrowX = width-174;
    arrowY = height-65;
    battleStart = false;
@@ -20,7 +20,7 @@ class BattleSystem{
  }
  
  void didBattleStart(){
-    if (key == 'p'){
+    if ((key == 'p') && (!battleDialogue)){
       battleStart = true;
       battleDialogue = true;
    }
@@ -31,7 +31,22 @@ class BattleSystem{
       arrowY = height-65;
    }
    if (key == 'x'){
-     battleDialogue = false;
+     if (lineNumber < 2){
+       lineNumber+=1;
+     }
+     if (lineNumber > 1){
+       battleDialogue = false;
+     }
+     if (lineNumber>2){
+       battleStart = false;
+       battleDialogue = false;
+     }
+     if (!battleDialogue){
+       if ((arrowX == width-80) && (arrowY == height-35)){
+         lineNumber+=1;
+         battleDialogue = true;
+       }
+     }
    }
  }
   
@@ -46,6 +61,19 @@ class BattleSystem{
         image(playerBattleBar2, width-188, height-95);
         image(arrow, arrowX, arrowY);
       }
+      else if(battleDialogue){
+        fill(0);
+        if (lineNumber == 0){
+          text("A wild Josh appeared.", 18, height-60);
+        }
+        if (lineNumber == 1){
+          text("Go Jean!", 18, height-60);
+        }
+        if (lineNumber == 3){
+          text("You escaped safely.", 18, height-60);
+        }
+      }
+      
     }
   }
   
