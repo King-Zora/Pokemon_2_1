@@ -1,3 +1,5 @@
+
+
 class Menu{
   float x, y, arrowX, arrowY, pokedexY, pokemonY, itemY, charecterY, saveY, optionY, exitY, cancelY, itemArrowY;
   PImage startMenu, arrow, pokedex, pokemon, item, charecter, save, option, exit, item_screen, char_screen, itemArrow;
