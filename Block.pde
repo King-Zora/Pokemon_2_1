@@ -15,11 +15,12 @@ class Block {
   }
 
   void display() {
-    //fill(255, 255, 255);
-    rect(x, y, w, h);
+    //Display a rectangle as visual representation
+    rect(x, y, w, h); //UnComment it out to see the horrific sea of blocks. (Green = grass, white = wall, dark blue = fence, light blue = interactive blocks)
   }
 
   void move(Red theKid) {
+    //Move the blocks to follow the scrolling
     if (theKid.blockWalk == 1) {
       if (theKid.direction == 0 || theKid.direction == 1) {
         y += ySpeed;

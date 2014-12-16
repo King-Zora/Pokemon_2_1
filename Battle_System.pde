@@ -45,6 +45,7 @@ class BattleSystem {
 
   void didBattleStart() { //this looks and checks if the battle should start or not (just press p to initiate)
     if ((key == 'p') && (!battleDialogue)) {
+      intro.stop();
       battleStart = true;
       battleDialogue = true;
       lineNumber = 0;
@@ -54,7 +55,7 @@ class BattleSystem {
   void display() { //the display
     println(lineNumber);
     println(pokemonMovesArrowY);
-    background(0);
+    //background(0);
     if (battleStart) { //battle started
       background(248, 248, 248);
       image(playerBattleBar1, 0, height-96);
